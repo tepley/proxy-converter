@@ -1,4 +1,4 @@
-module fe-team-projects/crdgenerator
+module proxy-converter
 
 go 1.16
 
