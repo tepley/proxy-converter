@@ -163,6 +163,13 @@ func (a aviProxy) CreateHostRule() {
 		},
 	}
 
+	if len(a.GslbService.DomainNames) > 0 {
+		hostrule.Spec.Virtualhost.Gslb.Fqdn = a.GslbService.DomainNames[0]
+	} else {
+		log.Printf("GSLB domain name not found for ingress %s, skipping GSLB FQDN in HostRule\n", a.Name)
+		return
+	}
+
 	//Marshall Yaml
 	data, err := yaml.Marshal(&hostrule)
 	if err != nil {
@@ -370,12 +377,17 @@ type HostSpec struct {
 
 type Virtualhost struct {
 	Fqdn               string     `yaml:"fqdn"`
+	Gslb   			   HostGSLB   `yaml:"gslb"`
 	TLS                HostTLS    `yaml:"tls,omitempty"`
 	HTTPPolicy         HTTPPolicy `yaml:"httpPolicy,omitempty"`
 	WafPolicy          string     `yaml:"wafPolicy,omitempty"`
 	ApplicationProfile string     `yaml:"applicationProfile,omitempty"`
 	AnalyticsProfile   string     `yaml:"analyticsProfile,omitempty"`
 	errorPageProfile   string     `yaml:"errorPageProfile,omitempty"`
+}
+
+type HostGSLB struct {
+	Fqdn string `yaml:"fqdn"`
 }
 
 type HostTLS struct {
