@@ -24,21 +24,20 @@ kubectl get ingress -A -o yaml > ingress.yaml
 This tool can currently migrate the following Avi_Proxy annotations to CRDs
 
 Converted to HostRule CRDs
-VirtualService - Application Profile Reference, SSLKeyandCertificate Reference, WAF Policy Reference, 
+VirtualService - GSLB FQDN, Application Profile Reference, SSLKeyandCertificate Reference, WAF Policy Reference,
 WIP - DS Reference
 
 Converted to HTTPRule CRDs
-Pool - HealthMonitor Reference, LoadBalancing Algorithm, LoadBalancing Algorithm Hash, 
-WIP - TLS Re-Encryption 
+Pool - HealthMonitor Reference, LoadBalancing Algorithm, LoadBalancing Algorithm Hash,
+WIP - TLS Re-Encryption
 
-Converted to GSLBHostRule CRDs (GSLB Services will be created based on Host/Domain Name value)
+Converted to GSLBHostRule CRDs (GSLB Services will be updated based on Host/Domain Name value)
 GSLBService - Domain Name, HealthMonitor Reference, TTL
 
 
 Unsupported Annotations
 ** If there are corner cases where we have working avi_proxy source examples please contact me so that I can add a the proper functionality and flags as needed. **
 
-GSLB FQDN (HostRuleCRD) - No source in avi_proxy to convert from 
 
 GSLB Third Party Members - No source in avi_proxy to convert from
 
@@ -48,7 +47,7 @@ GSLB Pool Algrorithm Settings - No source in avi_proxy to convert from
 
 Pool Group/Pool Group Ratios - No direct conversion to CRD
 
-Analytics Profile Reference - Only an analytics policy was allowed to be specified in avi_proxy annotations and only a reference is allowd in CRDs so this is not possible. 
+Analytics Profile Reference - Only an analytics policy was allowed to be specified in avi_proxy annotations and only a reference is allowd in CRDs so this is not possible.
 
 errorPageProfile Reference - This was not allowed to be specified in avi_proxy annotations so no conversion can be performed.
 
@@ -56,11 +55,9 @@ HTTPPolicySet - In avi_proxy annotations users defined both the policy set refer
 
 SE Group References / VIP Network - These are now defined in a cluster scoped AviInfraSetting CRD.
 To automate this we would need to parse Ingresses with SE Group References into buckets and create a single AviInfraSetting CRD for each bucket.
-For K8s we then need to create an IngressClass object that references the AviInfraSettingCRD and finally update the individual ingress files. As generating ingress files is not apart of this tool this must be done manually. 
+For K8s we then need to create an IngressClass object that references the AviInfraSettingCRD and finally update the individual ingress files. As generating ingress files is not apart of this tool this must be done manually.
 
 
 ## Contact
 Charlie Gutierrez
 [charliegut14@gmail.com](mailto:charliegut14@gmail.com)
-
-
