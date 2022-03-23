@@ -328,7 +328,7 @@ func (a aviProxy) CreateGSLBRule() {
 		APIVersion: "amko.vmware.com/v1alpha1",
 		Kind:       "GSLBHostRule",
 		Metadata: Metadata{
-			Name:      a.GslbService.Name + "-gslbrule",
+			Name:      a.Name + "-gslbrule",
 			Namespace: a.NameSpace,
 		},
 		Spec: GSLBHostSpec{

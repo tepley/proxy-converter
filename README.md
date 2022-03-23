@@ -1,9 +1,10 @@
-# CRDGenerator
+# Proxy-Converter
 
 Author: Charlie Gutierrez  [charliegut14@gmail.com](mailto:charliegut14@gmail.com)
 
 ## About Project
-This tool is used used to convert Avi Proxy annotations from our legacy K8s Cloud Connector and convert them to applicable CRDs for use with AKO
+This tool is used to convert Avi Proxy annotations from our legacy K8s Cloud Connector and convert them to applicable CRDs for use with AKO.
+
 
 
 ## Usage
