@@ -136,8 +136,15 @@ func (a aviProxy) CreateHostRule() {
 		APIVersion: "ako.vmware.com/v1alpha1",
 		Kind:       "HostRule",
 		Metadata: Metadata{
-			Name:      a.Name + "-hostrule",
-			Namespace: a.NameSpace,
+			Name:      		a.Name + "-hostrule",
+			Namespace: 		a.NameSpace,
+			Annotations: 	Annotations {
+				MetaHelmShReleaseName: 		a.Name,
+				MetaHelmShReleaseNamespace: a.NameSpace,
+			},
+			Labels: Labels {
+				AppKubernetesIoManagedBy: "Helm",
+			},
 		},
 		Spec: HostSpec{
 			Virtualhost: Virtualhost{
@@ -274,6 +281,13 @@ func (a aviProxy) CreateHTTPRule() {
 		Metadata: Metadata{
 			Name:      a.Name + "-httprule",
 			Namespace: a.NameSpace,
+			Annotations: 	Annotations {
+				MetaHelmShReleaseName: 		a.Name,
+				MetaHelmShReleaseNamespace: a.NameSpace,
+			},
+			Labels: Labels {
+				AppKubernetesIoManagedBy: "Helm",
+			},
 		},
 		Spec: HttpSpec{
 			Fqdn:  a.Virtualservice.Fqdn,
@@ -330,6 +344,13 @@ func (a aviProxy) CreateGSLBRule() {
 		Metadata: Metadata{
 			Name:      a.Name + "-gslbrule",
 			Namespace: a.NameSpace,
+			Annotations: 	Annotations {
+				MetaHelmShReleaseName: 		a.Name,
+				MetaHelmShReleaseNamespace: a.NameSpace,
+			},
+			Labels: Labels {
+				AppKubernetesIoManagedBy: "Helm",
+			},
 		},
 		Spec: GSLBHostSpec{
 			Fqdn:                  fq,
@@ -367,8 +388,19 @@ type HostRule struct {
 }
 
 type Metadata struct {
-	Name      string `yaml:"name"`
-	Namespace string `yaml:"namespace"`
+	Name      	string 		`yaml:"name"`
+	Namespace 	string 		`yaml:"namespace"`
+	Annotations	Annotations `yaml:"annotations"`
+	Labels		Labels 		`yaml:"labels"`
+}
+
+type Annotations struct {
+	MetaHelmShReleaseName      string `yaml:"meta.helm.sh/release-name"`
+	MetaHelmShReleaseNamespace string `yaml:"meta.helm.sh/release-namespace"`
+}
+
+type Labels struct {
+	AppKubernetesIoManagedBy string `yaml:"app.kubernetes.io/managed-by"`
 }
 
 type HostSpec struct {
