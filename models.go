@@ -136,11 +136,11 @@ func (a aviProxy) CreateHostRule() {
 		APIVersion: "ako.vmware.com/v1alpha1",
 		Kind:       "HostRule",
 		Metadata: Metadata{
-			Name:      		a.Name + "-hostrule",
-			Namespace: 		a.NameSpace,
+			Name:			a.Name + "-hostrule",
+			Namespace:		a.NameSpace,
 			Annotations: 	Annotations {
-				MetaHelmShReleaseName: 		a.Name,
-				MetaHelmShReleaseNamespace: a.NameSpace,
+				MetaHelmShReleaseName:		a.Name,
+				MetaHelmShReleaseNamespace:	a.NameSpace,
 			},
 			Labels: Labels {
 				AppKubernetesIoManagedBy: "Helm",
@@ -388,10 +388,10 @@ type HostRule struct {
 }
 
 type Metadata struct {
-	Name      	string 		`yaml:"name"`
-	Namespace 	string 		`yaml:"namespace"`
-	Annotations	Annotations `yaml:"annotations"`
-	Labels		Labels 		`yaml:"labels"`
+	Name      	string		`yaml:"name"`
+	Namespace 	string		`yaml:"namespace"`
+	Annotations	Annotations	`yaml:"annotations"`
+	Labels		Labels		`yaml:"labels"`
 }
 
 type Annotations struct {
