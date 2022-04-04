@@ -283,7 +283,7 @@ func (a aviProxy) CreateHTTPRule() {
 			Namespace: a.NameSpace,
 			Annotations: 	Annotations {
 				MetaHelmShReleaseName: 		a.Name,
-				MetaHelmShReleaseNamespace: a.NameSpace,
+				MetaHelmShReleaseNamespace:	a.NameSpace,
 			},
 			Labels: Labels {
 				AppKubernetesIoManagedBy: "Helm",
@@ -345,8 +345,8 @@ func (a aviProxy) CreateGSLBRule() {
 			Name:      a.Name + "-gslbrule",
 			Namespace: a.NameSpace,
 			Annotations: 	Annotations {
-				MetaHelmShReleaseName: 		a.Name,
-				MetaHelmShReleaseNamespace: a.NameSpace,
+				MetaHelmShReleaseName:		a.Name,
+				MetaHelmShReleaseNamespace:	a.NameSpace,
 			},
 			Labels: Labels {
 				AppKubernetesIoManagedBy: "Helm",
